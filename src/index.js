@@ -1,5 +1,9 @@
+import 'phaser';
 import '../style/style.scss';
-import Phaser from '../js/phaser';
+// import config from './config/config';
+// import GameScene from './scenes/GameScene';
+// import BootScene from './scenes/BootScene';
+// import PreloaderScene from './scenes/PreloaderScene';
 
 const config = {
   type: Phaser.AUTO,
@@ -30,7 +34,7 @@ function preload() {
   this.load.image('ground', '../assets/platform.png');
   this.load.image('star', '../assets/star.png');
   this.load.image('bomb', '../assets/bomb.png');
-  this.load.spritesheet('nora', '../assets/nora01.png', { frameWidth: 18, frameHeight: 48 });
+  this.load.spritesheet('nora', '../assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 }
 
 function create() {
@@ -42,7 +46,7 @@ function create() {
   platforms.create(750, 220, 'ground');
   platforms.create(450, 50, 'ground').setScale(0.5);
 
-  player = this.physics.add.sprite(120, 430, 'nora');
+  player = this.physics.add.sprite(100, 450, 'nora');
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
 
@@ -70,3 +74,18 @@ function create() {
 function update() {
 
 }
+
+
+// class Game extends Phaser.Game {
+//   constructor() {
+//     super(config);
+//     this.scene.add('Game', GameScene);
+//     this.scene.add('Boot', BootScene);
+//     this.scene.add('Preloader', PreloaderScene);
+//     this.scene.start('Boot');
+//   }
+// }
+
+// window.onload = function () {
+//   window.game = new Game();
+// };
