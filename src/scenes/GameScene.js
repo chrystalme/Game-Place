@@ -140,10 +140,10 @@ export default class GameScene extends Phaser.Scene {
     return label;
   }
 
-  hitBomb(player, bomb){
-    this.physics.pause();
+  hitBomb(player, bomb) {
     player.setTint(0xff0000);
     player.anims.play('turn');
     this.gameOver = true;
+    this.physics.pause();
   }
 }
