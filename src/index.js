@@ -5,16 +5,6 @@ import GameScene from './scenes/GameScene';
 import BootScene from './scenes/BootScene';
 import PreloaderScene from './scenes/PreloaderScene';
 
-// let platforms;
-
-
-// let player;
-// let stars;
-// let score = 0;
-// let scoreText;
-// let bombs;
-// let cursors;
-
 
 // function preload() {
 //   this.load.image('sky', '../assets/sky.png');

@@ -1,8 +1,11 @@
 import Phaser from 'phaser';
+import ScoreLabel from '../ui/ScoreLabel';
+import BombMaker from './BombMaker';
 
 const GROUND = 'ground';
 const NORA = 'nora';
 const STAR = 'star';
+const BOMB = 'bomb';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -13,20 +16,28 @@ export default class GameScene extends Phaser.Scene {
     this.load.image('sky', '../public/assets/sky.png');
     this.load.image(GROUND, '../public/assets/platform.png');
     this.load.image(STAR, '../public/assets/star.png');
-    this.load.image('bomb', '../public/assets/bomb.png');
+    this.load.image(BOMB, '../public/assets/bomb.png');
     this.load.spritesheet(NORA, '../public/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
   }
 
   create() {
     this.add.image(400, 300, 'sky');
-    this.add.image(400, 300, 'star');
 
     const platforms = this.createPlatforms();
     this.player = this.createPlayer();
-    const stars = this.createStars();
+    this.stars = this.createStars();
+
+    this.scoreLabel = this.createScoreLabel(16, 16, 0);
+
+    this.bombMaker = new BombMaker(this, BOMB);
+    const bombGroup = this.bombMaker.group;
+
     this.physics.add.collider(this.player, platforms);
-    this.physics.add.collider(stars, platforms);
-    // this.physics.add.overlap(this.player, stars, collectStar, null, this);
+    this.physics.add.collider(this.stars, platforms);
+    this.physics.add.collider(bombGroup, platforms);
+
+    this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
+
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 
@@ -54,7 +65,7 @@ export default class GameScene extends Phaser.Scene {
     platforms.create(600, 400, GROUND);
     platforms.create(50, 250, GROUND);
     platforms.create(750, 220, GROUND);
-    platforms.create(350, 70, GROUND);
+    platforms.create(250, 90, GROUND);
 
     return platforms;
   }
@@ -100,5 +111,26 @@ export default class GameScene extends Phaser.Scene {
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     });
     return stars;
+  }
+
+  collectStar(player, star) {
+    star.disableBody(true, true);
+    this.scoreLabel.add(10);
+
+    if (this.stars.countActive(true) === 0) {
+      // A new batch of starts is created
+      this.stars.children.iterate((child) => {
+        child.enableBody(true, child.x, 0, true, true);
+      });
+    }
+
+    this.bombMaker.spawn(player.x);
+  }
+
+  createScoreLabel(x, y, score) {
+    const style = { fontSize: '32px', fill: '#000' };
+    const label = new ScoreLabel(this, x, y, score, style);
+    this.add.existing(label);
+    return label;
   }
 }
