@@ -1,4 +1,5 @@
-import 'phaser';
+import Phaser from 'phaser';
+import TitleScene from './TitleScene';
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -6,10 +7,10 @@ export default class PreloaderScene extends Phaser.Scene {
   }
 
   preload() {
-    
+
   }
 
   create() {
-    
+    this.scene.start(TitleScene);
   }
 }
