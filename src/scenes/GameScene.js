@@ -10,6 +10,8 @@ const BOMB = 'bomb';
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super('game-scene');
+
+    this.gameOver = false;
   }
 
   preload() {
