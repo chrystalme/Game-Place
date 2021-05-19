@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-// import '../style/style.scss';
+import '../style/style.scss';
 // import config from './config/config';
 import GameScene from './scenes/GameScene';
 import BootScene from './scenes/BootScene';
@@ -171,7 +171,7 @@ const config = {
       gravity: { y: 200 },
     },
   },
-  scene: [GameScene]
+  scene: [GameScene],
 };
 
 export default new Phaser.Game(config);
