@@ -37,6 +37,7 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.collider(this.player, platforms);
     this.physics.add.collider(this.stars, platforms);
     this.physics.add.collider(bombGroup, platforms);
+    this.physics.add.collider(this.player, bombGroup, this.hitBomb, null, true);
 
     this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
 
@@ -45,6 +46,9 @@ export default class GameScene extends Phaser.Scene {
 
 
   update() {
+    if (this.gameOver) {
+      return;
+    }
     if (this.cursors.left.isDown) {
       this.player.setVelocityX(-160);
       this.player.anims.play('left', true);
@@ -134,5 +138,12 @@ export default class GameScene extends Phaser.Scene {
     const label = new ScoreLabel(this, x, y, score, style);
     this.add.existing(label);
     return label;
+  }
+
+  hitBomb(player, bomb){
+    this.physics.pause();
+    player.setTint(0xff0000);
+    player.anims.play('turn');
+    this.gameOver = true;
   }
 }
