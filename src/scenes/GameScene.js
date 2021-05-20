@@ -119,6 +119,15 @@ export default class GameScene extends Phaser.Scene {
     return stars;
   }
 
+  hitBomb(/* player */) {
+    this.physics.pause();
+    this.scene.start('game-over');
+    // player.setTint(0xff0000);
+    // player.anims.play('turn');
+    // this.gameOver = true;
+    // console.log('Game Over');
+  }
+
   collectStar(player, star) {
     star.disableBody(true, true);
     this.scoreLabel.add(10);
@@ -128,8 +137,8 @@ export default class GameScene extends Phaser.Scene {
       this.stars.children.iterate((child) => {
         child.enableBody(true, child.x, 0, true, true);
       });
-      this.bombMaker.spawn(player.x);
     }
+    this.bombMaker.spawn(player.x);
   }
 
   createScoreLabel(x, y, score) {
@@ -137,14 +146,5 @@ export default class GameScene extends Phaser.Scene {
     const label = new ScoreLabel(this, x, y, score, style);
     this.add.existing(label);
     return label;
-  }
-
-  hitBomb(player) {
-    player.anims.play('turn');
-    player.setTint(0xff0000);
-    this.gameOver = true;
-    console.log('Game Over');
-    this.scene.start('game-over');
-    // this.physics.pause();
   }
 }

@@ -1,16 +1,15 @@
 import Phaser from 'phaser';
-import TitleScene from './TitleScene';
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
-    super('Preloader');
+    super('preloader');
   }
 
   preload() {
-    this.load.image('preloads', '../public/assets/logo.png');
+    
   }
 
   create() {
-    this.scene.start('title');
+    this.scene.start('game-scene');
   }
 }

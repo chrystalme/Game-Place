@@ -5,11 +5,10 @@ export default class TitleScene extends Phaser.Scene {
     super('title');
   }
 
-  preload() {
-    this.load.image('logo', '../assets/logo_t.png');
-  }
-
   create() {
-    this.scene.start('game-scene');
+    this.add.text(400, 300, 'Welcome to Nora' / 's place', { font: '48px Arial', fill: 'blue' });
+    this.input.keyboard.once('keydowm-SPACE', () => {
+      this.scene.start('preloader');
+    });
   }
 }
