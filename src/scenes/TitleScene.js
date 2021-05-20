@@ -6,7 +6,7 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   create() {
-    this.add.text(400, 300, 'Welcome to Nora' / 's place', { font: '48px Arial', fill: 'blue' });
+    this.add.text(this.scale.width * 0.5, this.scale.height * 0.5, "Welcome to Nora's place", { font: '48px Arial', fill: 'blue' });
     this.input.keyboard.once('keydowm-SPACE', () => {
       this.scene.start('preloader');
     });
