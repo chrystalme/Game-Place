@@ -32,12 +32,12 @@ export default class GameScene extends Phaser.Scene {
     this.scoreLabel = this.createScoreLabel(16, 16, 0);
 
     this.bombMaker = new BombMaker(this, BOMB);
-    const bombGroup = this.bombMaker.group;
+    const bombsGroup = this.bombMaker.group;
 
     this.physics.add.collider(this.player, platforms);
     this.physics.add.collider(this.stars, platforms);
-    this.physics.add.collider(bombGroup, platforms);
-    this.physics.add.collider(this.player, bombGroup, this.hitBomb, null, true);
+    this.physics.add.collider(bombsGroup, platforms);
+    this.physics.add.collider(this.player, bombsGroup, this.hitBomb, null, true);
 
     this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
 
@@ -128,9 +128,8 @@ export default class GameScene extends Phaser.Scene {
       this.stars.children.iterate((child) => {
         child.enableBody(true, child.x, 0, true, true);
       });
+      this.bombMaker.spawn(player.x);
     }
-
-    this.bombMaker.spawn(player.x);
   }
 
   createScoreLabel(x, y, score) {
@@ -140,10 +139,12 @@ export default class GameScene extends Phaser.Scene {
     return label;
   }
 
-  hitBomb(player, bomb) {
-    player.setTint(0xff0000);
+  hitBomb(player) {
     player.anims.play('turn');
+    player.setTint(0xff0000);
     this.gameOver = true;
-    this.physics.pause();
+    console.log('Game Over');
+    this.scene.start('game-over');
+    // this.physics.pause();
   }
 }

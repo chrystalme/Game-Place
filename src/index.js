@@ -1,9 +1,10 @@
 import Phaser from 'phaser';
 import '../style/style.scss';
-// import config from './config/config';
 import GameScene from './scenes/GameScene';
 import BootScene from './scenes/BootScene';
 import PreloaderScene from './scenes/PreloaderScene';
+import GameoverScene from './scenes/GameoverScene';
+import TitleScene from './scenes/TitleScene';
 
 
 const config = {
@@ -16,7 +17,7 @@ const config = {
       gravity: { y: 200 },
     },
   },
-  scene: [GameScene],
+  scene: [GameScene, BootScene, GameoverScene, PreloaderScene, TitleScene],
 };
 
 export default new Phaser.Game(config);
