@@ -119,11 +119,11 @@ export default class GameScene extends Phaser.Scene {
     return stars;
   }
 
-  hitBomb(/* player */) {
+  hitBomb(player) {
     this.physics.pause();
     this.scene.start('game-over');
-    // player.setTint(0xff0000);
-    // player.anims.play('turn');
+    player.setTint(0xff0000);
+    player.anims.play('turn');
     // this.gameOver = true;
     // console.log('Game Over');
   }
@@ -137,8 +137,8 @@ export default class GameScene extends Phaser.Scene {
       this.stars.children.iterate((child) => {
         child.enableBody(true, child.x, 0, true, true);
       });
+      this.bombMaker.spawn(player.x);
     }
-    this.bombMaker.spawn(player.x);
   }
 
   createScoreLabel(x, y, score) {

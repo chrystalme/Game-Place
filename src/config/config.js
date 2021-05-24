@@ -1,10 +1,6 @@
 import Phaser from 'phaser';
-import BootScene from '../scenes/BootScene';
-import GameScene from '../scenes/GameScene';
-import PreloaderScene from '../scenes/PreloaderScene';
-import TitleScene from '../scenes/TitleScene';
 
-const config = {
+export default {
   type: Phaser.AUTO,
   parent: 'content',
   width: 800,
@@ -19,9 +15,6 @@ const config = {
       gravity: { y: 300 },
       debug: false,
     },
-    scene: [BootScene, PreloaderScene, TitleScene, GameScene],
   },
 
 };
-
-export default config;

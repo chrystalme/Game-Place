@@ -3,23 +3,24 @@ import '../style/style.scss';
 import GameScene from './scenes/GameScene';
 import BootScene from './scenes/BootScene';
 import PreloaderScene from './scenes/PreloaderScene';
-import GameoverScene from './scenes/GameoverScene';
+import GameOverScene from './scenes/GameOverScene';
 import TitleScene from './scenes/TitleScene';
+import config from './config/config';
 // import postData from './api';
 
 
-const config = {
-  type: Phaser.AUTO,
-  width: 800,
-  height: 600,
-  backgroundColor: '#333333',
-  physics: {
-    default: 'arcade',
-    arcade: {
-      gravity: { y: 200 },
-    },
-  },
-  scene: [BootScene, TitleScene, PreloaderScene, GameScene, GameoverScene],
-};
-
-new Phaser.Game(config);
+class Game extends Phaser.Game {
+  constructor() {
+    super(config);
+    this.scene.add('Boot', BootScene);
+    this.scene.add('Preloader', PreloaderScene);
+    this.scene.add('Title', TitleScene);
+    this.scene.add('Options', OptionsScene);
+    this.scene.add('Credits', CreditsScene);
+    this.scene.add('Game', GameScene);
+    this.scene.add('GameOver', GameOverScene);
+    this.scene.add('Boot', BootScene);
+    this.scene.start('Boot');
+  }
+}
+window.game = new Game();
