@@ -1,5 +1,10 @@
 
 const key = 'w2QrElL4pZZ70MTwdThv';
+const url = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${key}/scores/`;
+const { name } = this.game.global;
+const { score } = this.game.global;
+
+const data = { user: name, score };
 
 const postData = async (url = '', data = {}) => {
   // Default options are marked with *
@@ -31,7 +36,5 @@ const getData = async (url = '') => {
   });
   return response.json(); // parses JSON response into native JavaScript objects
 };
-
-
 
 export default { postData, getData };
