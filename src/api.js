@@ -1,9 +1,8 @@
-const score = () => {
+const Score = () => {
   const key = 'w2QrElL4pZZ70MTwdThv';
   const url = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${key}/scores/`;
-  const data = {};
 
-  const postData = async () => {
+  const postData = async (data = {}) => {
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -35,16 +34,10 @@ const score = () => {
     }
   };
 
-  const setName = (name) => {
-    data.user = name;
-  };
 
-  const setScore = (score) => {
-    data.score = score;
-  };
   return {
-    postData, getData, setName, setScore,
+    postData, getData,
   };
 };
 
-export default score;
+export default Score;

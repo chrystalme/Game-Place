@@ -10,6 +10,7 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   create() {
+    console
     // Play Game
     this.gameButton = this.add.sprite(100, 200, 'blueButton1').setInteractive();
     this.centerButton(this.gameButton, 1);
@@ -18,7 +19,7 @@ export default class TitleScene extends Phaser.Scene {
     this.centerButtonText(this.gameText, this.gameButton);
 
     this.gameButton.on('pointerdown', (pointer) => {
-      this.scene.start('game-scene');
+      this.scene.start('Game');
     });
 
     // Options
@@ -41,6 +42,17 @@ export default class TitleScene extends Phaser.Scene {
 
     this.creditsButton.on('pointerdown', (pointer) => {
       this.scene.start('Credits');
+    });
+
+    // Leader Board
+    this.LeaderButton = this.add.sprite(300, 200, 'blueButton1').setInteractive();
+    this.centerButton(this.LeaderButton, -2);
+
+    this.leaderText = this.add.text(0, 0, 'Leaders', { fontSize: '32px', fill: '#fff' });
+    this.centerButtonText(this.leaderText, this.LeaderButton);
+
+    this.LeaderButton.on('pointerdown', (pointer) => {
+      this.scene.start('LeaderBoard');
     });
 
     this.input.on('pointerover', (event, gameObjects) => {

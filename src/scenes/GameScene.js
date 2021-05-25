@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import ScoreLabel from '../ui/ScoreLabel';
 import BombMaker from './BombMaker';
+import score from '../api';
 
 const GROUND = 'ground';
 const NORA = 'nora';
@@ -9,7 +10,7 @@ const BOMB = 'bomb';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
-    super('game-scene');
+    super('Game');
 
     this.gameOver = false;
   }
@@ -20,6 +21,16 @@ export default class GameScene extends Phaser.Scene {
     this.load.image(STAR, '../public/assets/star.png');
     this.load.image(BOMB, '../public/assets/bomb.png');
     this.load.spritesheet(NORA, '../public/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+  }
+
+  hitBomb(player) {
+    document.querySelector('#nameForm').style.display = 'block';
+    this.physics.pause();
+    this.scene.start('GameOver');
+    player.setTint(0xff0000);
+    player.anims.play('turn');
+    this.gameOver = true;
+    console.log('Game Over');
   }
 
   create() {
@@ -42,6 +53,24 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
 
     this.cursors = this.input.keyboard.createCursorKeys();
+
+    const nameForm = document.querySelector('#nameForm');
+    const p = document.createElement('p');
+    p.fontSize = '120px';
+    p.style.color = 'white';
+    p.style.fontWeight = 'bold';
+    p.innerHTML = 'Game Over ';
+    nameForm.prepend(p);
+    nameForm.style.display = 'none';
+    const submit = document.querySelector('#submit');
+    this.user = document.querySelector('#name').value;
+    const myScore = new score();
+    submit.addEventListener('click', () => {
+      const data = { user: this.user, score: this.game.global.score };
+      myScore.postData(data);
+      nameForm.style.display = 'none';
+      this.scene.start('Boot');
+    });
   }
 
 
@@ -119,28 +148,6 @@ export default class GameScene extends Phaser.Scene {
     return stars;
   }
 
-  hitBomb(player) {
-    const nameForm = document.querySelector('#nameForm');
-    const p = document.createElement('p');
-    p.fontSize = '120px';
-    p.style.color = 'white';
-    p.style.fontWeight = 'bold';
-    p.innerHTML = 'Game Over ';
-    nameForm.prepend(p);
-    nameForm.style.display = 'block';
-    const submit = document.querySelector('#submit');
-    this.user = document.querySelector('#name').value;
-    submit.addEventListener('click', () => {
-      console.log(this.user, this.score);
-    });
-    this.physics.pause();
-    this.scene.start('game-over');
-    player.setTint(0xff0000);
-    player.anims.play('turn');
-    // this.gameOver = true;
-    // console.log('Game Over');
-  }
-
   collectStar(player, star) {
     star.disableBody(true, true);
     this.scoreLabel.add(10);
@@ -159,10 +166,5 @@ export default class GameScene extends Phaser.Scene {
     const label = new ScoreLabel(this, x, y, score, style);
     this.add.existing(label);
     return label;
-  }
-
-  postScore() {
-    document.querySelector('#name').value = '';
-    nameForm.style.display = 'block';
   }
 }
