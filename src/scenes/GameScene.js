@@ -23,6 +23,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
+    console.log(this.game.global.score);
     this.add.image(400, 300, 'sky');
 
     const platforms = this.createPlatforms();
@@ -131,7 +132,7 @@ export default class GameScene extends Phaser.Scene {
   collectStar(player, star) {
     star.disableBody(true, true);
     this.scoreLabel.add(10);
-
+    this.game.global.score += 10;
     if (this.stars.countActive(true) === 0) {
       // A new batch of starts is created
       this.stars.children.iterate((child) => {

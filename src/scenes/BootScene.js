@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import { clone } from 'lodash';
+import globals from '../globals';
 
 export default class BootScene extends Phaser.Scene {
   constructor() {
@@ -10,6 +12,11 @@ export default class BootScene extends Phaser.Scene {
   }
 
   create() {
+    this.initGlobalVariables();
     this.scene.start('Preloader');
+  }
+
+  initGlobalVariables() {
+    this.game.global = clone(globals);
   }
 }
