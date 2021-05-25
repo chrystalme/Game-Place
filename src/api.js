@@ -1,7 +1,7 @@
 
 const key = 'w2QrElL4pZZ70MTwdThv';
 const url = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${key}/scores/`;
-const { name } = this.game.global;
+
 const { score } = this.game.global;
 
 const data = { user: name, score };

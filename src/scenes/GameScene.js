@@ -23,7 +23,6 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-    console.log(this.game.global.score);
     this.add.image(400, 300, 'sky');
 
     const platforms = this.createPlatforms();
@@ -121,6 +120,19 @@ export default class GameScene extends Phaser.Scene {
   }
 
   hitBomb(player) {
+    const nameForm = document.querySelector('#nameForm');
+    const p = document.createElement('p');
+    p.fontSize = '120px';
+    p.style.color = 'white';
+    p.style.fontWeight = 'bold';
+    p.innerHTML = 'Game Over ';
+    nameForm.prepend(p);
+    nameForm.style.display = 'block';
+    const submit = document.querySelector('#submit');
+    this.user = document.querySelector('#name').value;
+    submit.addEventListener('click', () => {
+      console.log(this.user, this.score);
+    });
     this.physics.pause();
     this.scene.start('game-over');
     player.setTint(0xff0000);
@@ -147,5 +159,10 @@ export default class GameScene extends Phaser.Scene {
     const label = new ScoreLabel(this, x, y, score, style);
     this.add.existing(label);
     return label;
+  }
+
+  postScore() {
+    document.querySelector('#name').value = '';
+    nameForm.style.display = 'block';
   }
 }
