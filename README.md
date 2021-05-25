@@ -1,15 +1,20 @@
-# JavaScript Capstone - RPG Game using Phaser.
+# JavaScript Capstone - RPG Game using Phaser. JumpMan
 
-### Jumping Man is a game developed using Phaser 3. 
+### JumpMan is a game developed using Phaser 3. 
 
 ## Instructions
 
+### To Play
 
-### The following functionalities are applicable in the application
+    - On the Title screen, click on Play.
+    - Use the arrow keys on your keyboard to move player
+    - Arrow Up for Up
+    - Arrow Right for right
+    - Arrow Down for down
+    - Arrow Left for left. 
 
-    - Users are able to create accounts
-    - Users are able to make read articles
-    - User have to be logged in to create articles and vote for them.
+    The purpose of the game is to collect as many stars before you are hit with a bomb.
+
 
 ## Built With
 
@@ -27,7 +32,18 @@ Supported browser with WEBGL preferred.
 
 Set up project as Follows
 
-- use `https://github.com/chrystalme/Yatching_lifestyle.git` to clone the repository
+- clone the repository
+```
+$git clone https://github.com/chrystalme/Game-Place.git 
+```
+- Change to current directory
+```
+$cd Game-Place
+```
+- Run webpack
+```
+npm run start
+```
 
 
 <!-- ## Live Link
@@ -45,7 +61,7 @@ Yachting-lifestyle: [yachtinglifestyle](http://yachting-lifestyle.herokuapp.com/
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/chrystalme/Yatching_lifestyle/issues).
+Feel free to check the [issues page](https://github.com/chrystalme/Game-Place/issues).
 
 ## Show your support
 
@@ -53,7 +69,6 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- [Nelson Sakwa on Behance](https://www.behance.net/sakwadesignstudio)
 - [Microverse](https://microverse.com)
 
 ## 📝 License

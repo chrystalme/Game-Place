@@ -7,9 +7,10 @@ export default class LeaderBoard extends Phaser.Scene {
   }
 
   preload() {
+    console.log(this.game.global.score);
     setInterval(() => {
       this.destroy;
-      this.scene.start('Title');
+      this.scene.start('Title');      
     }, 3000);
   }
 
