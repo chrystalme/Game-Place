@@ -38,6 +38,11 @@ const config = {
       // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
+  resolve: {
+    modules: [
+      'node_modules',
+    ],
+  },
 };
 
 module.exports = () => {

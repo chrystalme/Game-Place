@@ -5,6 +5,15 @@ body {
   color: wheat;
 }
 
+table{
+  border-collapse: collapse;
+  width: 100%;
+  background-color: rgb(71, 73, 73);
+}
+td, th {
+  margin: 0.05rem;
+}
+
 p,
 form {
   position: relative;
@@ -20,4 +29,18 @@ form {
   right: 0;
   bottom: 0;
   background-color: rgba(7, 7, 7, 0.664);
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.close {
+  position: fixed;
+  z-index: 5;
+  top: 10px;
+  right: 10px;
 }

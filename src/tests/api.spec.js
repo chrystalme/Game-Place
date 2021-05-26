@@ -1,52 +1,25 @@
-require('regenerator-runtime');
-
-const axios = require('axios');
-const api = require('../api');
+import Score from '../api';
 
 
-jest.mock('axios');
+jest.mock('../api');
 
-it('It should return the player name', async () => {
-  axios.get.mockResolvedValue({
-    data: [
-      {
-        name: 'kevin',
-        score: 100,
-      },
-    ],
-  });
-  await api.postData()
-    .then((data) => {
-      expect(data.name).toEqual('Kevin');
-    }).catch((error) => error);
-});
+const fakedata = [
+  {
+    name: 'kevin',
+    score: 100,
+  },
+  {
+    name: 'Matt',
+    score: 150,
+  },
+];
 
-it('It should return the player score', async () => {
-  axios.get.mockResolvedValue({
-    data: [
-      {
-        name: 'Matt',
-        score: 150,
-      },
-    ],
-  });
-  await api.postScores()
-    .then((data) => {
-      expect(data.score).toEqual(150);
-    }).catch((error) => error);
-});
+const feedback = { result: 'Leaderboard score created correctly.' };
+const score = new Score();
+score.getData.mockResolvedValue(fakedata);
+score.postData.mockResolvedValue(feedback);
 
-it('It should fail if player score is incorrect', async () => {
-  axios.get.mockResolvedValue({
-    data: [
-      {
-        name: 'Matt',
-        score: 150,
-      },
-    ],
-  });
-  await api.postScores()
-    .then((data) => {
-      expect(data.score).not.toBe(210);
-    }).catch((error) => error);
+test('the data ia an array', async () => {
+  const data = await score.getData();
+  expect(data).toEqual(fakedata);
 });

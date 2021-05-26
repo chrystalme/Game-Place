@@ -23,16 +23,6 @@ export default class GameScene extends Phaser.Scene {
     this.load.spritesheet(NORA, '../public/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
   }
 
-  hitBomb(player) {
-    document.querySelector('#nameForm').style.display = 'block';
-    document.querySelector('#name').innerHTML = '';
-    this.physics.pause();
-    this.scene.start('GameOver');
-    player.setTint(0xff0000);
-    player.anims.play('turn');
-    this.gameOver = true;
-  }
-
   create() {
     this.add.image(400, 300, 'sky');
 
@@ -167,5 +157,15 @@ export default class GameScene extends Phaser.Scene {
     const label = new ScoreLabel(this, x, y, score, style);
     this.add.existing(label);
     return label;
+  }
+
+  hitBomb(player) {
+    this.renderer('GameOver');
+    document.querySelector('#nameForm').style.display = 'block';
+    document.querySelector('#name').innerHTML = '';
+    this.physics.pause();
+    player.setTint(0xff0000);
+    player.anims.play('turn');
+    this.gameOver = true;
   }
 }

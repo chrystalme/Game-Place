@@ -7,6 +7,9 @@
     maximum-scale=1, minimum-scale=1, user-scalable=no">
     <script src="../js/phaser.js" defer></script>
     <script src="main.js" defer></script>
+    <script src="../src/ui/leaderboard.js">
+        
+    </script>
     <title>Webpack App</title>
 
 </head>
@@ -19,6 +22,14 @@
           <input id="submit" type="button" value="Submit">
         </form>
     </div>
-    <div id="leader-board" class="form-screen" style="display: none;"></div>
+    <div id="leader-board" class="form-screen" style="display: block;">
+        <button class="close">x</button>
+    <table class="center">
+        <thead><tr><th>Position</th><th>User</th><th>Score</th></tr></thead>
+        <tbody id="table-body">
+            
+        </tbody>
+    </table>
+    </div>
 </body>
 </html>

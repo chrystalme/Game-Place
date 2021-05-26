@@ -1,10 +1,5 @@
-
-/**
- * @jest-environment jsdom
- */
-const Scene = require('phaser');
-
-const OptionsScene = require('../scenes/OptionsScene');
+import Phaser from 'phaser';
+import OptionsScene from '../scenes/OptionsScene';
 
 
 test('use jsdom in this test file', () => {
@@ -13,5 +8,5 @@ test('use jsdom in this test file', () => {
 });
 
 test('OptionsScene should be a subclass of Phase.Scene', () => {
-  expect(OptionsScene).toBeSubclassOf(Scene);
+  expect(OptionsScene).toBeSubclassOf(Phaser.Scene);
 });
