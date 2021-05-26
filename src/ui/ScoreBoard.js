@@ -17,7 +17,8 @@ const Board = () => {
 
 
   const board = (arr) => {
-    const board = document.querySelector('#leade-board');
+    const board = document.querySelector('#leader-board');
+    board.style.background = '#fff';
     board.style.display = 'grid';
 
     arr.slice(0, 10).forEach((item, i) => {

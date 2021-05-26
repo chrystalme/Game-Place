@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import ScoreLabel from '../ui/ScoreLabel';
 import BombMaker from './BombMaker';
-import score from '../api';
+import Score from '../api';
 
 const GROUND = 'ground';
 const NORA = 'nora';
@@ -25,12 +25,12 @@ export default class GameScene extends Phaser.Scene {
 
   hitBomb(player) {
     document.querySelector('#nameForm').style.display = 'block';
+    document.querySelector('#name').innerHTML = '';
     this.physics.pause();
     this.scene.start('GameOver');
     player.setTint(0xff0000);
     player.anims.play('turn');
     this.gameOver = true;
-    console.log('Game Over');
   }
 
   create() {
@@ -63,13 +63,14 @@ export default class GameScene extends Phaser.Scene {
     nameForm.prepend(p);
     nameForm.style.display = 'none';
     const submit = document.querySelector('#submit');
-    this.user = document.querySelector('#name').value;
-    const myScore = new score();
+    const name = document.querySelector('#name');
+    this.user = name.value;
+    const myScore = new Score();
     submit.addEventListener('click', () => {
       const data = { user: this.user, score: this.game.global.score };
       myScore.postData(data);
       nameForm.style.display = 'none';
-      this.scene.start('Boot');
+      this.scene.start('Title');
     });
   }
 
