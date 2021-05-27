@@ -42,7 +42,7 @@ $cd Game-Place
 ```
 - Run webpack
 ```
-npm run start
+npm run serve
 ```
 
 
