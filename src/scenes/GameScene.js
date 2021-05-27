@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import ScoreLabel from '../ui/ScoreLabel';
+import LevelLabel from '../ui/LevelLabel';
 import BombMaker from './BombMaker';
 import Score from '../api';
 
@@ -31,6 +32,7 @@ export default class GameScene extends Phaser.Scene {
     this.stars = this.createStars();
 
     this.scoreLabel = this.createScoreLabel(16, 16, 0);
+    this.levelLabel = this.createLevelLabel(250, 16, 1);
 
     this.bombMaker = new BombMaker(this, BOMB);
     const bombsGroup = this.bombMaker.group;
@@ -149,23 +151,31 @@ export default class GameScene extends Phaser.Scene {
         child.enableBody(true, child.x, 0, true, true);
       });
       this.bombMaker.spawn(player.x);
+      this.levelLabel.add(1);
     }
   }
 
   createScoreLabel(x, y, score) {
-    const style = { fontSize: '32px', fill: '#000' };
+    const style = { fontSize: '24px Arial', fill: '#000' };
     const label = new ScoreLabel(this, x, y, score, style);
     this.add.existing(label);
     return label;
   }
 
+  createLevelLabel(x, y, level) {
+    const style = { fontSize: '24px Arial', fill: '#000' };
+    const label = new LevelLabel(this, x, y, level, style);
+    this.add.existing(label);
+    return label;
+  }
+
   hitBomb(player) {
-    this.renderer('GameOver');
     document.querySelector('#nameForm').style.display = 'block';
     document.querySelector('#name').innerHTML = '';
     this.physics.pause();
     player.setTint(0xff0000);
     player.anims.play('turn');
     this.gameOver = true;
+    this.renderer('GameOver');
   }
 }
