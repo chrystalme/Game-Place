@@ -44,3 +44,31 @@ form {
   top: 10px;
   right: 10px;
 }
+
+#leader-board {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  color: #5d1512;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  left: 30%;
+  right: 25%;
+  width: 40%;
+  height: auto;
+
+  span{
+    width: auto;
+    padding: 3%, 8%;
+  }
+}

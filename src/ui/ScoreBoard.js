@@ -1,6 +1,7 @@
-import score from '../api';
+/* eslint-disable func-names */
+import Score from '../api';
 
-const Board = () => {
+const Board = (function () {
   const sortData = (data) => {
     const myArr = data;
     for (let i = 0; i < myArr.length; i += 1) {
@@ -36,13 +37,14 @@ const Board = () => {
 
   const create = () => {
     let data;
-    score.getData().then((res) => {
+    Score.getData().then((res) => {
       data = sortData(res.result);
 
       board(data);
     });
   };
   return { create };
-};
+});
+
 
 export default Board;
