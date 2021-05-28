@@ -45,7 +45,6 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
 
     this.cursors = this.input.keyboard.createCursorKeys();
-
     const nameForm = document.querySelector('#nameForm');
     const p = document.createElement('p');
     p.fontSize = '120px';
@@ -56,13 +55,17 @@ export default class GameScene extends Phaser.Scene {
     nameForm.style.display = 'none';
     const submit = document.querySelector('#submit');
     const name = document.querySelector('#name');
-    this.user = name.value;
-    const myScore = new Score();
+    name.value = '';
     submit.addEventListener('click', () => {
-      const data = { user: this.user, score: this.game.global.score };
+      if (name.value === '') {
+        return;
+      }
+      const user = name.value;
+      const myScore = new Score();
+      const data = { user, score: this.game.global.score };
       myScore.postData(data);
       nameForm.style.display = 'none';
-      this.scene.start('Title');
+      this.game.scene.start('Title');
     });
   }
 
@@ -176,6 +179,6 @@ export default class GameScene extends Phaser.Scene {
     player.setTint(0xff0000);
     player.anims.play('turn');
     this.gameOver = true;
-    this.renderer('GameOver');
+    this.scene.start('GameOver');
   }
 }
