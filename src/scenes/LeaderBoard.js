@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import Score from '../api';
 import config from '../config/config';
 
 
@@ -11,72 +10,52 @@ export default class LeaderBoard extends Phaser.Scene {
   create() {
     this.add.image(config.width / 2, config.height / 2, 'board').setScale(2);
     this.add.text(config.width / 2 - 130, config.height / 2 - 280, 'Top 10 Players', {
-      color: '#e3e3e3',
+      color: '#5d1512',
       fontFamily: 'Arial',
       fontSize: '30px',
       fontStyle: 'bolder',
     });
-    const scoreView = document.querySelector('#leader-board');
-    scoreView.style.display = 'block';
-    // scoreBoard.create();
-    // setInterval(() => {
-    //   this.scene.start('Title');
-    // }, 5000);
-
-    const rData = async () => {
-      const key = 'w2QrElL4pZZ70MTwdThv';
-      const url = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${key}/scores/`;
-      const response = await fetch(url);
-      const data = response.json();
-      return data;
-    };
-    const data = rData();
-    console.log(data.result.length);
+    const scoreView = document.querySelector('#result');
+    scoreView.style.display = 'grid';
+    this.returnData();
+    setInterval(() => {
+      this.scene.start('Title');
+      scoreView.style.display = 'none';
+    }, 5000);
   }
 
- 
+    sortData = (data) => {
+      const myArr = data;
+      for (let i = 0; i < myArr.length; i += 1) {
+        for (let j = 0; j < myArr.length - 1; j += 1) {
+          if (myArr[j].score < myArr[j + 1].score) {
+            const tmp = myArr[j];
+            myArr[j] = myArr[j + 1];
+            myArr[j + 1] = tmp;
+          }
+        }
+      }
+      return myArr;
+    };
 
-  // Board = () => {
-  //   const sortData = (data) => {
-  //     const myArr = data;
-  //     for (let i = 0; i < myArr.length; i += 1) {
-  //       for (let j = 0; j < myArr.length - 1; j += 1) {
-  //         if (myArr[j].score < myArr[j + 1].score) {
-  //           const tmp = myArr[j];
-  //           myArr[j] = myArr[j + 1];
-  //           myArr[j + 1] = tmp;
-  //         }
-  //       }
-  //     }
-  //     return myArr;
-  //   };
+    getData = async (url = '') => {
+      const response = await fetch(url);
+      return response.json(); // parses JSON response into native JavaScript objects
+    }
 
-  //   const board = (arr) => {
-  //     const board = document.querySelector('#leader-board');
-  //     board.style.background = 'blue';
-  //     board.style.display = 'grid';
-
-  //     arr.slice(0, 10).forEach((item, i) => {
-  //       const ranking = document.createElement('span');
-  //       const name = document.createElement('span');
-  //       const score = document.createElement('span');
-  //       ranking.textContent = i + 1;
-  //       name.textContent = item.user;
-  //       score.textContent = item.score;
-  //       board.appendChild(ranking);
-  //       board.appendChild(name);
-  //       board.appendChild(score);
-  //     });
-  //   };
-
-  //   const create = () => {
-  //     let data;
-  //     Score.getData().then((res) => {
-  //       data = sortData(res.result);
-
-  //       board(data);
-  //     });
-  //   };
-  //   return { create };
-  // };
+    returnData = async () => {
+      const key = 'w2QrElL4pZZ70MTwdThv';
+      const url = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${key}/scores/`;
+      const result = document.getElementById('result');
+      result.innerHTML = '';
+      result.style.display = 'grid';
+      const rData = await this.getData(url);
+      const data = this.sortData(rData.result);
+      const record = data.slice(0, 10);
+      for (let i = 0; i < record.length; i += 1) {
+        const pTag = document.createElement('span');
+        pTag.innerHTML = `${i + 1} - ${record[i].user} : ${record[i].score}`;
+        result.appendChild(pTag);
+      }
+    }
 }

@@ -45,9 +45,7 @@ form {
   right: 10px;
 }
 
-#leader-board {
-  display: none;
-  grid-template-columns: repeat(3, 1fr);
+#result {
   border-top: 1px solid black;
   border-right: 1px solid black;
   border-left: 1px solid black;
