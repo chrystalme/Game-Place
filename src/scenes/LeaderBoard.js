@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import Phaser from 'phaser';
 import config from '../config/config.js';
 

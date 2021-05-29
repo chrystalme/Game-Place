@@ -1,4 +1,5 @@
-import Score from '../src/api';
+/* eslint-disable import/extensions */
+import Score from '../src/api.js';
 
 jest.mock('../src/api');
 

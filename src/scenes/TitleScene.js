@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-vars */
 import Phaser from 'phaser';

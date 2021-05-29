@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable func-names */
 /* eslint-disable no-unused-expressions */
 import Phaser from 'phaser';

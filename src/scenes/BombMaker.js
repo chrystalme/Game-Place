@@ -7,12 +7,10 @@ export default class BombMaker {
   constructor(scene, bombKey = 'bomb') {
     this.scene = scene;
     this.key = bombKey;
-    // Originally this._group ??
     this.group = this.scene.physics.add.group();
   }
 
   getGroup() {
-    // Originally this._group ??
     return this.group;
   }
 

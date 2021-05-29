@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable func-names */
 import Score from '../api.js';
 

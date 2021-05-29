@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import Phaser from 'phaser';
 import ScoreLabel from '../ui/ScoreLabel.js';
 import LevelLabel from '../ui/LevelLabel.js';

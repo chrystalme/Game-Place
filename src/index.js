@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import Phaser from 'phaser';
 import '../style/style.scss';
 import GameScene from './scenes/GameScene.js';

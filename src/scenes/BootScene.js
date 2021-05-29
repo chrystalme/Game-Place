@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import Phaser from 'phaser';
 import { clone } from 'lodash';
 import globals from '../globals/index.js';
