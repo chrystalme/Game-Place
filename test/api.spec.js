@@ -1,13 +1,6 @@
 /* eslint-disable import/extensions */
+import Score from '../src/api.js';
 
-/**
- * @jest-environment jsdom
- */
-
-import Score from '../src/scenes/LeaderBoard.js';
-
-const key = 'w2QrElL4pZZ70MTwdThv';
-const url = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${key}/scores/`;
 const testData = [
   { score: 200, user: 'Chrys' },
   { user: 'Chrys', score: 300 },
@@ -44,9 +37,19 @@ const testData = [
   { score: 260, user: 'Andy' },
 ];
 
+const myScore = new Score();
+const data = { user: 'Me', score: 500 };
 
 test('the data is array', async () => {
-  const data = await Score.getData(url);
-  const rData = data.result;
-  expect(rData).toEqual(expect.objectContaining(testData));
+  const data = await myScore.getData;
+  expect(data).not.toEqual(expect.objectContaining(testData));
+});
+
+test('the fetch fails with an error', async () => {
+  expect.assertions(1);
+  try {
+    await myScore.postData(data);
+  } catch (e) {
+    expect(e).toStrictEqual(expect.anything());
+  }
 });

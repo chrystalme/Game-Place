@@ -24,18 +24,27 @@ const Score = () => {
   };
 
   const getData = async () => {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      return data.result;
-    } catch (error) {
-      throw new Error(error);
+    const response = await fetch(url);
+    return response.json(); // parses JSON response into native JavaScript objects
+  };
+
+  const returnData = async () => {
+    const result = document.getElementById('result');
+    result.innerHTML = '';
+    result.style.display = 'grid';
+    const rData = await this.getData(url);
+    const data = this.sortData(rData.result);
+    const record = data.slice(0, 10);
+    for (let i = 0; i < record.length; i += 1) {
+      const pTag = document.createElement('span');
+      pTag.innerHTML = `${i + 1} - ${record[i].user} : ${record[i].score}`;
+      result.appendChild(pTag);
     }
   };
 
 
   return {
-    postData, getData,
+    postData, getData, returnData,
   };
 };
 
