@@ -2,12 +2,17 @@
  * @jest-environment jsdom
  */
 
-require('jest-canvas-mock');
-require('jest-expect-subclass');
 
-const Phaser = require('phaser');
-const GameOver = require('../src/scenes/GameOverScene');
+import 'jest-canvas-mock';
+import 'jest-expect-subclass';
+
+import Phaser from 'phaser';
+import GameOverScene from '../src/scenes/GameOverScene';
 
 test('GameOverScene should be a subclass of Phaser.Scene', () => {
-  expect(GameOver).toBeSubClassOf(Phaser.Scene);
+  expect(GameOverScene).not.toBeInstanceOf(Phaser.Scene);
+});
+
+test('GameOverScene should be a subclass of Phaser.Scene', () => {
+  expect(GameOverScene).toBeSubclassOf(Phaser.Scene);
 });
