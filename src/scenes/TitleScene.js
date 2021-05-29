@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import Phaser from 'phaser';
 
-import config from '../config/config';
+import config from '../config/config.js';
 
 export default class TitleScene extends Phaser.Scene {
   constructor() {

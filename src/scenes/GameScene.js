@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
-import ScoreLabel from '../ui/ScoreLabel';
-import LevelLabel from '../ui/LevelLabel';
-import BombMaker from './BombMaker';
-import Score from '../api';
+import ScoreLabel from '../ui/ScoreLabel.js';
+import LevelLabel from '../ui/LevelLabel.js';
+import BombMaker from './BombMaker.js';
+import Score from '../api.js';
 
 const GROUND = 'ground';
 const NORA = 'nora';

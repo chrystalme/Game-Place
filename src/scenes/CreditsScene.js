@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 /* eslint-disable no-unused-expressions */
 import Phaser from 'phaser';
-import config from '../config/config';
+import config from '../config/config.js';
 
 export default class CreditsScene extends Phaser.Scene {
   constructor() {

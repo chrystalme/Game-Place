@@ -1,5 +1,5 @@
 /* eslint-disable func-names */
-import Score from '../api';
+import Score from '../api.js';
 
 const Board = (function () {
   const sortData = (data) => {

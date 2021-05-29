@@ -29,7 +29,7 @@ const Score = () => {
         mode: 'cors',
       });
       const data = await response.json();
-      return data;
+      return data.result;
     } catch (error) {
       throw new Error(error);
     }
