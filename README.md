@@ -40,6 +40,10 @@ $git clone https://github.com/chrystalme/Game-Place.git
 ```
 $cd Game-Place
 ```
+- Install dependencies
+```
+npm install
+```
 - Run webpack
 ```
 npm run serve
