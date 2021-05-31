@@ -65,8 +65,8 @@ export default class GameScene extends Phaser.Scene {
       const myScore = new Score();
       const data = { user, score: this.game.global.score };
       myScore.postData(data);
-      this.game.scene.start('Title');
       nameForm.style.display = 'none';
+      this.game.scene.start('Title');
     });
   }
 
