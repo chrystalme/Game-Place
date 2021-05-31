@@ -18,11 +18,11 @@ export default class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('sky', '../public/assets/sky.png');
-    this.load.image(GROUND, '../public/assets/platform.png');
-    this.load.image(STAR, '../public/assets/star.png');
-    this.load.image(BOMB, '../public/assets/bomb.png');
-    this.load.spritesheet(NORA, '../public/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.image('sky', '../../assets/sky.png');
+    this.load.image(GROUND, '../../assets/platform.png');
+    this.load.image(STAR, '../../assets/star.png');
+    this.load.image(BOMB, '../../assets/bomb.png');
+    this.load.spritesheet(NORA, '../../assets/dude.png', { frameWidth: 32, frameHeight: 48 });
   }
 
   create() {
@@ -41,7 +41,7 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.collider(this.player, platforms);
     this.physics.add.collider(this.stars, platforms);
     this.physics.add.collider(bombsGroup, platforms);
-    this.physics.add.collider(this.player, bombsGroup, this.hitBomb, null, true);
+    this.physics.add.collider(this.player, bombsGroup, this.hitBomb1, null, true);
 
     this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
 
@@ -180,6 +180,12 @@ export default class GameScene extends Phaser.Scene {
     player.setTint(0xff0000);
     player.anims.play('turn');
     this.gameOver = true;
+    this.scene.start('GameOver');
+  }
+
+  hitBomb1(player) {
+    player.setTint(0xff0000);
+    player.anims.play('turn');
     this.scene.start('GameOver');
   }
 }
