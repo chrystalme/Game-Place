@@ -14,6 +14,7 @@ const config = {
   devServer: {
     open: true,
     host: 'localhost',
+    contentBase: path.join(__dirname, 'dist'),
   },
   plugins: [
     // Add your plugins here

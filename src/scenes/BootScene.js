@@ -2,6 +2,7 @@
 import Phaser from 'phaser';
 import { clone } from 'lodash';
 import globals from '../globals/index.js';
+// import board from
 
 export default class BootScene extends Phaser.Scene {
   constructor() {
