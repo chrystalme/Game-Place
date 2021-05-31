@@ -40,7 +40,7 @@ $git clone https://github.com/chrystalme/Game-Place.git
 ```
 $cd Game-Place
 ```
--Install dependencies
+- Install dependencies
 ```
 npm install
 ```
