@@ -31,6 +31,7 @@ export default class GameScene extends Phaser.Scene {
     const platforms = this.createPlatforms();
     this.player = this.createPlayer();
     this.stars = this.createStars();
+    this.hitBomb = this.hitBomb();
 
     this.scoreLabel = this.createScoreLabel(16, 16, 0);
     this.levelLabel = this.createLevelLabel(250, 16, 1);
@@ -41,7 +42,7 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.collider(this.player, platforms);
     this.physics.add.collider(this.stars, platforms);
     this.physics.add.collider(bombsGroup, platforms);
-    this.physics.add.collider(this.player, bombsGroup, this.hitBomb1, null, true);
+    this.physics.add.collider(this.player, bombsGroup, this.hitBomb, null, true);
 
     this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
 
@@ -174,16 +175,10 @@ export default class GameScene extends Phaser.Scene {
   hitBomb(player) {
     document.querySelector('#nameForm').style.display = 'block';
     document.querySelector('#name').innerHTML = '';
+    player.setTint(0xff0000);
+    player.anims.play('turn');
     this.physics.pause();
-    player.setTint(0xff0000);
-    player.anims.play('turn');
     this.gameOver = true;
-    this.scene.start('GameOver');
-  }
-
-  hitBomb1(player) {
-    player.setTint(0xff0000);
-    player.anims.play('turn');
     this.scene.start('GameOver');
   }
 }
