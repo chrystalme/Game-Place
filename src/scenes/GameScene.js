@@ -18,11 +18,11 @@ export default class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('sky', '../../assets/sky.png');
-    this.load.image(GROUND, '../../assets/platform.png');
-    this.load.image(STAR, '../../assets/star.png');
-    this.load.image(BOMB, '../../assets/bomb.png');
-    this.load.spritesheet(NORA, '../../assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.image('sky', '../assets/sky.png');
+    this.load.image(GROUND, '../assets/platform.png');
+    this.load.image(STAR, '../assets/star.png');
+    this.load.image(BOMB, '../assets/bomb.png');
+    this.load.spritesheet(NORA, '../assets/dude.png', { frameWidth: 32, frameHeight: 48 });
   }
 
   create() {
