@@ -31,7 +31,6 @@ export default class GameScene extends Phaser.Scene {
     const platforms = this.createPlatforms();
     this.player = this.createPlayer();
     this.stars = this.createStars();
-    this.hitBomb = this.hitBomb();
 
     this.scoreLabel = this.createScoreLabel(16, 16, 0);
     this.levelLabel = this.createLevelLabel(250, 16, 1);
