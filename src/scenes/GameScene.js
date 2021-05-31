@@ -106,7 +106,6 @@ export default class GameScene extends Phaser.Scene {
     const player = this.physics.add.sprite(100, 450, NORA);
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
-    // player.body.setGravityY(300);
 
     this.anims.create({
       key: 'left',
@@ -150,7 +149,6 @@ export default class GameScene extends Phaser.Scene {
     this.scoreLabel.add(10);
     this.game.global.score += 10;
     if (this.stars.countActive(true) === 0) {
-      // A new batch of starts is created
       this.stars.children.iterate((child) => {
         child.enableBody(true, child.x, 0, true, true);
       });
