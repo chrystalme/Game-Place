@@ -21,7 +21,15 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "start": "npm run build && webpack-dev-server --host=0.0.0.0 --port=$PORT --disable-host-check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrystalme/Game-Place.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrystalme/Game-Place/issues"
   },
   "keywords": [],
   "author": "",
@@ -58,5 +66,6 @@
     "phaser": "^3.54.0",
     "regenerator-runtime": "^0.13.7"
   },
-  "type": "module"
+  "type": "module",
+  "heroku-run-build-script": true
 }
