@@ -66,5 +66,8 @@
     "phaser": "^3.54.0",
     "regenerator-runtime": "^0.13.7"
   },
+  "engines": {
+    "node": "16.1.0"
+  },
   "heroku-run-build-script": true
 }
