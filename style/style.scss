@@ -5,12 +5,14 @@ body {
   color: wheat;
 }
 
-table{
+table {
   border-collapse: collapse;
   width: 100%;
   background-color: rgb(71, 73, 73);
 }
-td, th {
+
+td,
+th {
   margin: 0.05rem;
 }
 
@@ -35,7 +37,7 @@ form {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
 .close {
@@ -59,14 +61,11 @@ form {
   justify-content: center;
   align-items: center;
   position: absolute;
-  // top: 10%;
-  // left: 30%;
   right: 50%;
   width: 40%;
   height: auto;
 
-  span{
+  span {
     width: auto;
-    padding: 3%, 8%;
   }
 }
