@@ -41,35 +41,33 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.collider(this.player, platforms);
     this.physics.add.collider(this.stars, platforms);
     this.physics.add.collider(bombsGroup, platforms);
-    this.physics.add.collider(this.player, bombsGroup, this.hitBomb, null, true);
+    this.physics.add.collider(this.player, bombsGroup, this.hitBomb, null, this);
 
     this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
 
     this.cursors = this.input.keyboard.createCursorKeys();
+
     const nameForm = document.querySelector('#nameForm');
-    const p = document.createElement('p');
-    p.fontSize = '120px';
-    p.style.color = 'white';
-    p.style.fontWeight = 'bold';
-    p.innerHTML = 'Game Over ';
-    nameForm.prepend(p);
     nameForm.style.display = 'none';
     const submit = document.querySelector('#submit');
     const name = document.querySelector('#name');
     name.value = '';
     submit.addEventListener('click', () => {
-      if (name.value === '') {
-        return;
-      }
       const user = name.value;
       const myScore = new Score();
       const data = { user, score: this.game.global.score };
+      if (name.value === '') {
+        return;
+      }
       myScore.postData(data);
       nameForm.style.display = 'none';
-      this.game.scene.start('Title');
+      this.gameOverScene();
     });
   }
 
+  gameOverScene() {
+    this.scene.start('GameOver');
+  }
 
   update() {
     if (this.cursors.left.isDown) {
@@ -95,7 +93,6 @@ export default class GameScene extends Phaser.Scene {
     this.gameOver = true;
     document.querySelector('#nameForm').style.display = 'block';
     document.querySelector('#name').innerHTML = '';
-    this.scene.start('GameOver');
   }
 
   createPlatforms() {
