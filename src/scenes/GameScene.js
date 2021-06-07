@@ -72,9 +72,6 @@ export default class GameScene extends Phaser.Scene {
 
 
   update() {
-    if (this.gameOver) {
-      return;
-    }
     if (this.cursors.left.isDown) {
       this.player.setVelocityX(-160);
       this.player.anims.play('left', true);
@@ -89,6 +86,16 @@ export default class GameScene extends Phaser.Scene {
     if (this.cursors.up.isDown && this.player.body.touching.down) {
       this.player.setVelocityY(-300);
     }
+  }
+
+  hitBomb(player) {
+    player.setTint(0xff0000);
+    player.anims.play('turn');
+    this.physics.pause();
+    this.gameOver = true;
+    document.querySelector('#nameForm').style.display = 'block';
+    document.querySelector('#name').innerHTML = '';
+    this.scene.start('GameOver');
   }
 
   createPlatforms() {
@@ -169,15 +176,5 @@ export default class GameScene extends Phaser.Scene {
     const label = new LevelLabel(this, x, y, level, style);
     this.add.existing(label);
     return label;
-  }
-
-  hitBomb(player) {
-    document.querySelector('#nameForm').style.display = 'block';
-    document.querySelector('#name').innerHTML = '';
-    player.setTint(0xff0000);
-    player.anims.play('turn');
-    this.physics.pause();
-    this.gameOver = true;
-    this.scene.start('GameOver');
   }
 }
