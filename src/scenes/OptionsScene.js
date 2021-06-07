@@ -9,6 +9,7 @@ export default class OptionsScene extends Phaser.Scene {
   create() {
     this.musicOn = true;
     this.soundOn = true;
+    this.bgMusic = this.sound.add('bgMusic');
 
     this.text = this.add.text(300, 100, 'Options', { fontSize: 40 });
     this.musicButton = this.add.image(200, 200, 'checkedBox');
@@ -44,14 +45,18 @@ export default class OptionsScene extends Phaser.Scene {
   updateAudio() {
     if (this.musicOn === false) {
       this.musicButton.setTexture('box');
+      this.bgMusic.stop();
     } else {
       this.musicButton.setTexture('checkedBox');
+      this.bgMusic.play();
     }
 
     if (this.soundOn === false) {
       this.soundButton.setTexture('box');
+      this.bgMusic.stop();
     } else {
       this.soundButton.setTexture('checkedBox');
+      this.bgMusic.play();
     }
   }
 }
