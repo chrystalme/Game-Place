@@ -172,6 +172,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   hitBomb(player) {
+    console.log(this.game.scene.keys);
     document.querySelector('#nameForm').style.display = 'block';
     document.querySelector('#name').innerHTML = '';
     player.setTint(0xff0000);
