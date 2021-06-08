@@ -52,8 +52,8 @@ npm run serve
 ## Documentation
  [Game Design Document](https://docs.google.com/document/d/1UtQpb6Hq1h3XmBU_P3-Yz-cUwc8l_QbtYPkb3wgsVJM/edit?usp=sharing)
 
-<!-- ## Live Link
-Yachting-lifestyle: [yachtinglifestyle](http://yachting-lifestyle.herokuapp.com/) -->
+## Live Link
+JumpmanCollector: [Jumpman](https://jumpmancollector.netlify.app/)
 
 ## Authors
 
