@@ -1,0 +1,73 @@
+{
+  "name": "my-webpack-project",
+  "version": "1.0.0",
+  "description": "My webpack project",
+  "main": "index.js",
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "setupFiles": [
+      "jest-canvas-mock"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ]
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve",
+    "start": "npm run build && webpack-dev-server --host=0.0.0.0 --port=$PORT --disable-host-check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrystalme/Game-Place.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrystalme/Game-Place/issues"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/plugin-transform-runtime": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@webpack-cli/generators": "^2.1.0",
+    "babel-eslint": "10.1.x",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.4",
+    "eslint": "6.8.x",
+    "eslint-config-airbnb-base": "14.1.x",
+    "eslint-plugin-import": "2.20.x",
+    "jest": "^27.0.1",
+    "jest-canvas-mock": "^2.3.1",
+    "sass": "^1.32.13",
+    "sass-loader": "^11.1.1",
+    "style-loader": "^2.0.0",
+    "stylelint": "13.3.x",
+    "stylelint-config-standard": "20.0.x",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "3.17.x",
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "@jest/core": "^27.0.1",
+    "axios": "^0.21.1",
+    "jest-expect-subclass": "^1.0.1",
+    "lodash": "^4.17.21",
+    "regenerator-runtime": "^0.13.7",
+    "phaser": "^3.54.0"
+  },
+  "engines": {
+    "node": "16.1.0"
+  },
+  "heroku-run-build-script": true
+}
